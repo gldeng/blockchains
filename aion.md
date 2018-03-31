@@ -1,7 +1,8 @@
 # AION
+[Github](https://github.com/aionnetwork/aion)
 
 ## [白皮书](https://aion.network/whitepapers.html)
-* [Executive Summary](https://aion.network/downloads/aion.network_executive-summary_en.pdf)
+* [Executive Summary](https://aion.network/downloads/aion.network_executive-summary_en.pdf)
 * [White Paper](https://aion.network/downloads/aion.network_technical-introduction_en.pdf)
 * [Monetary Policy](https://aion.network/downloads/aion.network_monetary-policy_en.pdf)
 
