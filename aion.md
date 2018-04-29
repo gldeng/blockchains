@@ -1,5 +1,6 @@
 # AION
 [Github](https://github.com/aionnetwork/aion)
+[aion_interchain](https://github.com/aionnetwork/aion_interchain/blob/master/documentation/aion_token_bridge.md)
 
 ## [白皮书](https://aion.network/whitepapers.html)
 * [Executive Summary](https://aion.network/downloads/aion.network_executive-summary_en.pdf)
