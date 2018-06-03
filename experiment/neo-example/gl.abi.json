@@ -1,0 +1,32 @@
+{
+    "hash":"0xeac817fc264cd4edfebce6947777267666cc5bf5",
+    "entrypoint":"Main",
+    "functions":
+    [
+        {
+            "name":"Add",
+            "parameters":
+            [
+                {
+                    "name":"a",
+                    "type":"Unknown:Neo.SmartContract.Point"
+                },
+                {
+                    "name":"b",
+                    "type":"Unknown:Neo.SmartContract.Point"
+                }
+            ],
+            "returntype":"Unknown:Neo.SmartContract.Point"
+        },
+        {
+            "name":"Main",
+            "parameters":
+            [
+            ],
+            "returntype":"Void"
+        }
+    ],
+    "events":
+    [
+    ]
+}

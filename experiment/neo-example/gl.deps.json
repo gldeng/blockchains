@@ -1,0 +1,38 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.0",
+    "signature": "e9a60a92b711d0199bc87dab5de847743c96f185"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.0": {
+      "gl/1.0.0": {
+        "dependencies": {
+          "Neo.SmartContract.Framework": "2.7.3"
+        },
+        "runtime": {
+          "gl.dll": {}
+        }
+      },
+      "Neo.SmartContract.Framework/2.7.3": {
+        "runtime": {
+          "lib/netstandard1.6/Neo.SmartContract.Framework.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "gl/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Neo.SmartContract.Framework/2.7.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-sFCwetHTmlDj2nKDUmg3wgnuspvIrIVBe5X8FwwPgtz620K+bdUMtzvg8tcyOt/Y1IlWICwLO+imPi81iChlGA==",
+      "path": "neo.smartcontract.framework/2.7.3",
+      "hashPath": "neo.smartcontract.framework.2.7.3.nupkg.sha512"
+    }
+  }
+}
