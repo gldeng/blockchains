@@ -20,7 +20,7 @@
 1. History indexing
 
 ## Proposed Components
-[](ProposedStructure.png)
+![](ProposedStructure.png)
 
 ## Main Components
 1. Kernel
