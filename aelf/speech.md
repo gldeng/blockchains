@@ -81,25 +81,29 @@ We can view a blockchain as a state transition machine upon valid transactions. 
 
 The data stored in the database are actually key-value pairs. While the data used in a smart contract are in the form of the in a class. Hence we need to have some kind of mapping from the smart contract fields to the key of the data stored in the database.
 
-We define a logical middle man called the data provider to do the translation from the smart contract fields to database keys. There are two types of fields in smart contract. One of regular type which has a name and a value. The other type call the map type field is itself a key-value collection. One root data provider is assigned to a smart contract instance. It handles the translation for the regular fields. For a map field, the root data provider cannot generate a final key used for data storage. Instead it generates a sub data provider. The sub data provider needs the actual data key to finalize the mapping.
+We define a logical middle man called the data provider to handle the translation from the smart contract fields to database keys. There are two types of fields in a smart contract. One is the regular type which has only a name and a value. The other type called the map type field is itself a key-value collection. One root data provider is assigned to a smart contract instance. For a regular fields, it can directly tranlate the field name to a key in data. But for a map field, as we don't know which data key in the map will be accessed, the root data provider cannot generate a final key used for data storage. Instead it generates a sub data provider which is used to translate a data key in the map to the key in the database.
 
-The result of the mapping is called a path. As it is constructed like a path on the file system. We call the data it points to in the database the Resource in the context of parallel processing.
+The result of the translation is called a path. As it is constructed like a path on the file system. We call the data it points to in the database the Resource in the context of parallel processing.
 
-* For a regular field, it has a full path consisting of the chain id, the contract address, the data provider name and the field name.
+* A typical path for a regular field  consists of the chain id, the contract address, the data provider name and the field name.
 
-* For a map field, without runtime context, we can only generate a partial path pointing to a sub data provider. We need the actual key in the map to form the full path to be used by the data base.
+* For a map field, we can get a partial path pointing to the sub data provider. We can think the sub data provider name as appending the map field name to the root data provider name.
 
-The full path is as the identifier of the resource. We'll analyze the smart contract code to extract the collection of resources used by the contract. The full paths of the regular types can be extracted statically from the smart contract code.
+The full path will as the identifier of the resource. We'll analyze the smart contract code to extract the collection of resources used by the contract.
 
-However, for mapping type, we need the input from the transaction to form the full paths and hence the resource set. Once the full set of resources are identified. We can group the transactions by the resources used. Transactions with direct or indirect shared resources are assigned into the same group and the transactions in the same group will be executed sequentially, but independent groups can be executed in parallel.
+* The full paths of the regular types can be statically extracted from the smart contract code.
 
-A special case is when there is inline call to another contract. For such cases, we form a call graph in memory. The resource set caused by callee funtions will also be added to the resource set of the transaction.
+* For mapping type field, where only partial path is statically know, the missing piece of information will be provided by transactions and the full path will be constructed by dynamically appending the data key to the partial path.
+
+Once the full set of resources are identified. We can group the transactions by the resources used. Transactions with direct or indirect shared resources are assigned into the same group and the transactions in the same group will be executed sequentially, but independent groups will be executed in parallel.
+
+A special case is when there are inline calls to other contracts. For such cases, we form a call graph in memory. The resource set caused by callee funtions will also be added to the resource set of the transaction.
 
 ## Slide 7
 So in summary, the concepts related to parallel processing are.
 1. Metadata: we extract meta data from the contract code, so that it can used to form the resource set and the call relationships.
-1. call graph maintenance: there is a global call graph for each chain, and it's updated every time when there is and update of contract code or a deployment of a new contract
-1. Resource identification: full resource set of each transaction are identified statically and dynamically. Where we a partial resource paths,  all addresses in a transaction are extracted and enxtended to every partial path, so that all possible resources are included.
+1. call graph maintenance: there is a global call graph for all function calls on the chain, and it's updated every time when there is an update of contract code or a deployment of a new contract
+1. Resource identification: full resource set of each transaction are identified statically and dynamically. Where we a partial resource paths,  all addresses in a transaction are extracted and enxtended to every partial path, so that no possible resources can be missed.
 1. Parallel execution of groups: unrelated groups are executed in parallel
 
 ## Slide 8
